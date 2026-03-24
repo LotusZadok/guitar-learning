@@ -1,0 +1,205 @@
+.section {
+  padding: 48px 60px;
+  border-bottom: 1px solid var(--rule);
+  animation: fadeUp 0.6s ease both;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  padding: 6px 14px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+
+.btn:hover {
+  border-color: var(--amber);
+}
+
+.hoverInfo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--amber);
+  min-width: 160px;
+}
+
+.fbWrap {
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.fretboard {
+  min-width: 820px;
+  background: var(--fret-bg);
+  border: 1px solid var(--rule);
+  padding: 16px 0 24px;
+  position: relative;
+}
+
+.fretMarkers {
+  display: flex;
+  padding: 0 52px 0 62px;
+  margin-bottom: 4px;
+}
+
+.fretCol {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.fretCol12 {
+  composes: fretCol;
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.fretDots {
+  display: flex;
+  padding: 0 52px 0 62px;
+  margin-bottom: 4px;
+  height: 10px;
+}
+
+.fretDotCol {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dotMark {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fret-dot);
+}
+
+.dotMarkDouble {
+  composes: dotMark;
+  box-shadow: 10px 0 0 var(--fret-dot);
+}
+
+.stringRow {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  position: relative;
+}
+
+.stringLabel {
+  width: 58px;
+  text-align: right;
+  padding-right: 8px;
+  font-size: 10px;
+  color: var(--muted);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.fretCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  border-right: 2px solid var(--fret-wire);
+  transition: background 0.1s;
+}
+
+.fretCellFirst {
+  composes: fretCell;
+  border-left: 4px solid var(--fret-nut);
+  border-right: 2px solid var(--fret-dot);
+}
+
+.fretCell:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.noteDot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.12s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.noteDotHovered {
+  composes: noteDot;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.noteDotPinned {
+  border: 2px solid #fff;
+}
+
+.noteDotScale {
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+.stringEnd {
+  width: 44px;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.noSharpNote {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background: rgba(212, 160, 23, 0.08);
+  border-left: 3px solid var(--amber);
+  font-size: 11px;
+  color: var(--amber);
+  line-height: 1.6;
+}
+
+.scaleSelector {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.scaleSelect {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  padding: 4px 8px;
+  background: #111;
+  border: 1px solid var(--rule);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 36px 24px;
+  }
+}

@@ -1,0 +1,153 @@
+.section {
+  padding: 48px 60px;
+  border-bottom: 1px solid var(--rule);
+  animation: fadeUp 0.6s ease both;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.card {
+  flex: 1;
+  border: 1px solid var(--rule);
+  padding: 16px 12px;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  opacity: 0.9;
+}
+
+.cardActive {
+  composes: card;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.note {
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.desc {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.viewToggle {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.viewBtn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  padding: 6px 14px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+
+.viewBtn:hover {
+  border-color: var(--amber);
+}
+
+.viewBtnActive {
+  composes: viewBtn;
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.keySelector {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.keyBtn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  padding: 3px 8px;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.keyBtn:hover {
+  border-color: var(--amber);
+}
+
+.keyBtnActive {
+  composes: keyBtn;
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.fbWrap {
+  margin-top: 8px;
+}
+
+.prompt {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 8px 0;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.legendSwatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 36px 24px;
+  }
+  .row {
+    flex-wrap: wrap;
+  }
+}
