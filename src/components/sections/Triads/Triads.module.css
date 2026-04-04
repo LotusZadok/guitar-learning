@@ -28,10 +28,6 @@
   transition: transform 0.15s;
 }
 
-.node:hover {
-  transform: scale(1.15);
-}
-
 .node > * {
   pointer-events: none;
 }

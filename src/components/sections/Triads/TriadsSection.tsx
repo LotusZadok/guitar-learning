@@ -33,7 +33,8 @@ export default function TriadsSection() {
     setTriadLines(lines);
   };
 
-  const triad = activeTriad ? TRIADS[activeTriad] : null;
+  const displayNote = activeTriad ?? NATURALS[0];
+  const triad = TRIADS[displayNote];
 
   return (
     <div className={styles.section}>
@@ -56,27 +57,31 @@ export default function TriadsSection() {
               onHover={handleHover} />
           ))}
         </svg>
-        {triad && activeTriad && (
-          <div className={styles.infoPanel} style={{ borderColor: NOTE_COLORS[activeTriad] }}>
-            <div className={styles.infoTitle} style={{ color: NOTE_COLORS[activeTriad] }}>
-              {NOTE_ES[activeTriad]} · {activeTriad}
-            </div>
-            <div className={styles.infoType}>{triad.type}</div>
-            <div className={styles.infoNotes}>
-              {triad.notes.map((n) => (
-                <div key={n} className={styles.infoNote} style={{ background: NOTE_COLORS[n] }}>{n}</div>
-              ))}
-            </div>
-            <div className={styles.infoLabels}>
-              {triad.notes.map((n, j) => (
-                <span key={n}>
-                  <span style={{ color: NOTE_COLORS[n], fontWeight: 600 }}>{n}</span> = {LABELS[j]}
-                  {j < 2 ? ' · ' : ''}
-                </span>
-              ))}
-            </div>
+        <div
+          className={styles.infoPanel}
+          style={{
+            borderColor: NOTE_COLORS[displayNote],
+            visibility: activeTriad ? 'visible' : 'hidden',
+          }}
+        >
+          <div className={styles.infoTitle} style={{ color: NOTE_COLORS[displayNote] }}>
+            {NOTE_ES[displayNote]} · {displayNote}
           </div>
-        )}
+          <div className={styles.infoType}>{triad.type}</div>
+          <div className={styles.infoNotes}>
+            {triad.notes.map((n) => (
+              <div key={n} className={styles.infoNote} style={{ background: NOTE_COLORS[n] }}>{n}</div>
+            ))}
+          </div>
+          <div className={styles.infoLabels}>
+            {triad.notes.map((n, j) => (
+              <span key={n}>
+                <span style={{ color: NOTE_COLORS[n], fontWeight: 600 }}>{n}</span> = {LABELS[j]}
+                {j < 2 ? ' · ' : ''}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
       <MasterTriad />
     </div>

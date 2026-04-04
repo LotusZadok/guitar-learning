@@ -34,7 +34,13 @@ export default function TriadNode({ note, index, cx, cy, r, onHover }: Props) {
   }, [onHover]);
 
   return (
-    <g className={styles.node} style={{ transformOrigin: `${x}px ${y}px` }}>
+    <g
+      className={styles.node}
+      style={{
+        transformOrigin: `${x}px ${y}px`,
+        transform: hovered ? 'scale(1.15)' : undefined,
+      }}
+    >
       <circle
         className={styles.hit}
         cx={x} cy={y} r={32}
