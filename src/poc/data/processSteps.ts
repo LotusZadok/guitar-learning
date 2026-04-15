@@ -155,7 +155,7 @@ function getSharpsRightSteps(t: Tonalidad): ProcessStepData[] {
       arrow: { fromPos: NOTE_TO_POS[lastSharp], toPos: NOTE_TO_POS[t.tonica] },
     },
     {
-      description: `3. Así sabremos quien es la tónica de nuestra tonalidad, ordenamos las 7 notas naturales partiendo de la tónica ${letter}`,
+      description: `3. Así sabremos quién es la tónica de nuestra tonalidad, ordenamos las 7 notas naturales partiendo de la tónica ${letter}`,
       circleNotes: s3, scaleDisplay: naturalScale, armaduraDisplay: [...t.armadura],
     },
     {

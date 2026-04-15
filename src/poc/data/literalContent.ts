@@ -1,8 +1,8 @@
 // Contenido literal del método de Josué Barquero — NO parafrasear, NO corregir erratas
 
-export const INTRO_LENGUAS = "Para comprender este tema utilizaremos una analogía con las diferentes lenguas del mundo, existen numerosos y bastos lenguajes, unos similares entre sí, por ejemplo: Español, Portugués, Italiano estos tres si bien es cierto no so el mismo comparten entre sí fonética, vocabulario, incluso gramática, esto gracias a compartir la misma raíz romance. Este mismo ejemplo pasa con el Alemán, Holandés, Inglés al compartir la raíz germánica, etc.";
+export const INTRO_LENGUAS = "Para comprender este tema utilizaremos una analogía con las diferentes lenguas del mundo, existen numerosos y vastos lenguajes, unos similares entre sí, por ejemplo: Español, Portugués, Italiano estos tres si bien es cierto no son el mismo comparten entre sí fonética, vocabulario, incluso gramática, esto gracias a compartir la misma raíz romance. Este mismo ejemplo pasa con el Alemán, Holandés, Inglés al compartir la raíz germánica, etc.";
 
-export const INTRO_VARIEDAD = "Todo estos nos hace entender que hay mucha variedad de lenguas algunas muy distintas entre sí otras muy similares donde cambian solo los detalles, esta misma idea la aplicamos a las TONALIDADES.";
+export const INTRO_VARIEDAD = "Todo esto nos hace entender que hay mucha variedad de lenguas algunas muy distintas entre sí otras muy similares donde cambian solo los detalles, esta misma idea la aplicamos a las TONALIDADES.";
 
 export const DEF_TONALIDADES = "Las tonalidades/lenguajes son familias de notas, en donde algunas tonalidades guardan similitud con otras, pero a su vez encontramos tonalidades muy diferentes entre sí.";
 
@@ -44,7 +44,7 @@ export const SOSTENIDOS_DER_TITULO = "¿Cómo saber la tonalidad partiendo de la
 export const SOSTENIDOS_DER_PASOS = [
   "1. Tenemos la armadura F# C# G# D#, vamos al último # de la armadura en cuestión = D#",
   "2. Subimos una 2m (1s.t.) a D# = E",
-  "3. Así sabremos quien es la tónica de nuestra tonalidad, ordenamos las 7 notas naturales partiendo de la tónica E",
+  "3. Así sabremos quién es la tónica de nuestra tonalidad, ordenamos las 7 notas naturales partiendo de la tónica E",
   "4. Actualizamos dicha escala con la armadura del punto 1 → E F# G# A B C# D#",
 ] as const;
 
@@ -64,7 +64,7 @@ export const BEMOLES_DER_TITULO = "¿Cómo saber la tonalidad partiendo de la ar
 export const BEMOLES_DER_PASOS = [
   "1. Tenemos la armadura Bb Eb Ab, buscamos el penúltimo b de la armadura en cuestión.",
   "2. Esa es nuestra tónica = Eb mayor",
-  "3. Sabiendo quien es la tónica de nuestra tonalidad, ordenamos las 7 notas naturales partiendo de la tónica E",
+  "3. Sabiendo quién es la tónica de nuestra tonalidad, ordenamos las 7 notas naturales partiendo de la tónica E",
   "4. Actualizamos dicha escala con la armadura del punto 1 → Eb F G Ab Bb C D",
 ] as const;
 
@@ -72,10 +72,10 @@ export const BEMOLES_CIERRE = "Concluimos que la armadura de Eb mayor es Bb Eb A
 
 export const EXCEPCION_F_COMPLETA = "Existe una excepción a este proceso en donde no aplican los pasos anteriormente vistos, por lo que procederemos a memorizar dicha excepción. Para la tonalidad de F mayor, al no existir un \"penúltimo bemol\", no aplican los pasos anteriores, esta tonalidad solo cuenta con el primer b de la herramienta, o sea Bb. En un contexto de música popular/rock, lo más común es trabajar únicamente con la columna izquierda (partiendo de la tonalidad) ya que es la información que tenemos más a la mano, dado que la columna de la derecha se emplea mayormente en la música académica (partitura), donde encontramos en el pentagrama al inicio de la obra, la armadura en cuestión, por lo que nosotros debemos descifrar la tonalidad en la que estamos tocando. Consejo: probar estos pasos con las 12 tónicas existentes. Podríamos concluir que la armadura de F mayor es solo Bb, y la escala es F G A Bb C D E";
 
-export const OBSERVACION_TONICAS_NATURALES = "Un dato curioso, es que la mayoría de tonalidades mayores con #, encontramos solo la nota natural como tónica, ejemplo: G, D, A, E, y B mayor.";
+export const OBSERVACION_TONICAS_NATURALES = "Un dato curioso, es que en la mayoría de tonalidades mayores con #, encontramos solo la nota natural como tónica, ejemplo: G, D, A, E, y B mayor.";
 
 export const OBSERVACION_TONICAS_BEMOL = "Al contrario, en las tonalidades con b encontramos que casi todas las tónicas contienen el b en su nombre, ejemplo: Bb, Eb, Ab, Db, Gb, y Cb mayor, con la excepción de F que es solo la nota natural.";
 
-export const OBSERVACION_UTILIDAD = "Esto nos ayuda a saber con que alteración y proceso trabajamos en dicha tonalidad.";
+export const OBSERVACION_UTILIDAD = "Esto nos ayuda a saber con qué alteración y proceso trabajamos en dicha tonalidad.";
 
 export const TABLA_MAESTRA_INTRO = "Para ayudar a comprobar si el proceso es correcto, acá una tabla con todas las tonalidades mayores existentes.";
