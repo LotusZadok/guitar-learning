@@ -1,5 +1,6 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import type { CircleNoteData } from '../data/processSteps';
+import { NOTE_TO_POS } from '../data/processSteps';
 import { useAudioEngine } from '../../hooks/useAudioEngine';
 import styles from './ChromaticCircleAnimated.module.css';
 
@@ -9,6 +10,8 @@ interface Props {
   compact?: boolean;
   playOnClick?: boolean;
   inlineClearButton?: boolean;
+  markedNotes?: string[];
+  onMarkedNotesChange?: (notes: string[]) => void;
 }
 
 const ENHARMONIC_MAP: Record<string, { name: string; octaveAdj: number }> = {
@@ -51,28 +54,48 @@ function arcPath(fromPos: number, toPos: number): string {
   return `M ${from.x} ${from.y} Q ${cx} ${cy} ${to.x} ${to.y}`;
 }
 
-export default function ChromaticCircleAnimated({ notes, arrow, compact, playOnClick = false, inlineClearButton = false }: Props) {
+export default function ChromaticCircleAnimated({ notes, arrow, compact, playOnClick = false, inlineClearButton = false, markedNotes, onMarkedNotesChange }: Props) {
   const size = compact ? 280 : 400;
+  const isControlled = markedNotes !== undefined;
   const [picked, setPicked] = useState<Set<number>>(new Set());
   const { playNote } = useAudioEngine();
 
+  useEffect(() => {
+    if (!isControlled) return;
+    const next = new Set<number>();
+    for (const name of markedNotes!) {
+      const pos = NOTE_TO_POS[name];
+      if (pos !== undefined) next.add(pos);
+    }
+    setPicked(next);
+  }, [isControlled, markedNotes]);
+
   const toggleNote = useCallback((pos: number) => {
+    const label = notes[pos]?.label;
+    if (playOnClick && label) {
+      const { name, octave } = resolveNote(label);
+      playNote(name, octave, 1.5);
+    }
+    if (isControlled && onMarkedNotesChange && label) {
+      const exists = markedNotes!.includes(label);
+      onMarkedNotesChange(exists ? markedNotes!.filter(n => n !== label) : [...markedNotes!, label]);
+      return;
+    }
     setPicked(prev => {
       const next = new Set(prev);
       if (next.has(pos)) next.delete(pos);
       else next.add(pos);
       return next;
     });
-    if (playOnClick) {
-      const label = notes[pos]?.label;
-      if (label) {
-        const { name, octave } = resolveNote(label);
-        playNote(name, octave, 1.5);
-      }
-    }
-  }, [notes, playNote, playOnClick]);
+  }, [notes, playNote, playOnClick, isControlled, markedNotes, onMarkedNotesChange]);
 
-  const clearPicked = useCallback(() => setPicked(new Set()), []);
+  const clearPicked = useCallback(() => {
+    if (isControlled && onMarkedNotesChange) {
+      onMarkedNotesChange([]);
+      return;
+    }
+    setPicked(new Set());
+  }, [isControlled, onMarkedNotesChange]);
 
   const arrowPath = useMemo(() => {
     if (!arrow) return null;
