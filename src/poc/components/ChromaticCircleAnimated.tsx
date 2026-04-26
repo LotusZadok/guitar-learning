@@ -1,11 +1,27 @@
 import { useMemo, useState, useCallback } from 'react';
 import type { CircleNoteData } from '../data/processSteps';
+import { useAudioEngine } from '../../hooks/useAudioEngine';
 import styles from './ChromaticCircleAnimated.module.css';
 
 interface Props {
   notes: CircleNoteData[];
   arrow?: { fromPos: number; toPos: number };
   compact?: boolean;
+  playOnClick?: boolean;
+  inlineClearButton?: boolean;
+}
+
+const ENHARMONIC_MAP: Record<string, { name: string; octaveAdj: number }> = {
+  'Cb': { name: 'B', octaveAdj: -1 },
+  'Fb': { name: 'E', octaveAdj: 0 },
+  'E#': { name: 'F', octaveAdj: 0 },
+  'B#': { name: 'C', octaveAdj: 1 },
+};
+
+function resolveNote(noteName: string): { name: string; octave: number } {
+  const mapped = ENHARMONIC_MAP[noteName];
+  if (mapped) return { name: mapped.name, octave: 4 + mapped.octaveAdj };
+  return { name: noteName, octave: 4 };
 }
 
 const RADIUS = 140;
@@ -35,9 +51,10 @@ function arcPath(fromPos: number, toPos: number): string {
   return `M ${from.x} ${from.y} Q ${cx} ${cy} ${to.x} ${to.y}`;
 }
 
-export default function ChromaticCircleAnimated({ notes, arrow, compact }: Props) {
+export default function ChromaticCircleAnimated({ notes, arrow, compact, playOnClick = false, inlineClearButton = false }: Props) {
   const size = compact ? 280 : 400;
   const [picked, setPicked] = useState<Set<number>>(new Set());
+  const { playNote } = useAudioEngine();
 
   const toggleNote = useCallback((pos: number) => {
     setPicked(prev => {
@@ -46,7 +63,14 @@ export default function ChromaticCircleAnimated({ notes, arrow, compact }: Props
       else next.add(pos);
       return next;
     });
-  }, []);
+    if (playOnClick) {
+      const label = notes[pos]?.label;
+      if (label) {
+        const { name, octave } = resolveNote(label);
+        playNote(name, octave, 1.5);
+      }
+    }
+  }, [notes, playNote, playOnClick]);
 
   const clearPicked = useCallback(() => setPicked(new Set()), []);
 
@@ -140,7 +164,10 @@ export default function ChromaticCircleAnimated({ notes, arrow, compact }: Props
       </svg>
 
       {picked.size > 0 && (
-        <button className={styles.clearBtn} onClick={clearPicked}>
+        <button
+          className={inlineClearButton ? styles.clearBtnInline : styles.clearBtn}
+          onClick={clearPicked}
+        >
           Limpiar
         </button>
       )}

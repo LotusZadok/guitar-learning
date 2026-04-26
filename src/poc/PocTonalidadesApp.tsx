@@ -3,6 +3,7 @@ import HerramientaSection from './sections/HerramientaSection';
 import ProcesoSostenidosSection from './sections/ProcesoSostenidosSection';
 import ProcesoBemolesSection from './sections/ProcesoBemolesSection';
 import TablaMaestraSection from './sections/TablaMaestraSection';
+import ModoClaseSection from './sections/ModoClaseSection';
 import styles from './PocTonalidadesApp.module.css';
 
 export default function PocTonalidadesApp() {
@@ -19,6 +20,7 @@ export default function PocTonalidadesApp() {
         <ProcesoSostenidosSection />
         <ProcesoBemolesSection />
         <TablaMaestraSection />
+        <ModoClaseSection />
       </main>
 
       <footer className={styles.footer}>
